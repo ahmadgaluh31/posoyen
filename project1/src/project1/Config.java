@@ -13,22 +13,22 @@ public class Config {
     
     public static Connection configDB() throws SQLException {
         try {
-            // URL untuk koneksi ke database MySQL
-            String url = "jdbc:mysql://localhost:3306/db_login"; // Ganti "db_login" dengan nama database kamu
-            String user = "root"; // Username default XAMPP
-            String pass = ""; // Password default XAMPP (kosong)
             
-            // Memuat driver MySQL JDBC
+            String url = "jdbc:mysql://localhost:3306/db_login"; 
+            String user = "root"; 
+            String pass = ""; 
+            
+            
             Class.forName("com.mysql.cj.jdbc.Driver");
             
-            // Membuat koneksi ke database
+            
             mysqlconfig = DriverManager.getConnection(url, user, pass);
             System.out.println("Koneksi berhasil!");
         } catch (ClassNotFoundException e) {
             System.out.println("Driver tidak ditemukan: " + e.getMessage());
         } catch (SQLException e) {
             System.out.println("Koneksi gagal: " + e.getMessage());
-            throw e; // Lanjutkan melempar SQLException ke pemanggil
+            throw e;
         }
         return mysqlconfig;
     }
