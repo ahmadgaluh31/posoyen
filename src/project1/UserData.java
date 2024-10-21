@@ -5,15 +5,15 @@ import java.sql.SQLException;
 
 public class UserData {
     // Method untuk menyimpan username dan password ke database
-public static boolean saveUser(String username, String password, String namaUser, int idLevel) {
-    String sql = "INSERT INTO user (username, password, nama_user, id_level) VALUES (?, ?, ?, ?)";
+public static boolean saveUser(String username, String password, String fullname, int idLevel) {
+    String sql = "INSERT INTO user (fullname, username, password, id_level) VALUES (?, ?, ?, ?)";
     try (Connection conn = DatabaseConnection.Go();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
 
         System.out.println("Menyusun query...");
-        stmt.setString(1, username);
-        stmt.setString(2, password); // Pertimbangkan untuk mengenkripsi password
-        stmt.setString(3, namaUser);
+        stmt.setString(1, fullname);
+        stmt.setString(2, username);
+        stmt.setString(3, password);
         stmt.setInt(4, idLevel);
 
         System.out.println("Menjalankan query...");

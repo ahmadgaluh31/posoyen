@@ -4,7 +4,6 @@
  */
 package project1;
 
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -191,10 +190,48 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_usernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_usernameActionPerformed
-        // TODO add your handling code here:
+        txt_password.requestFocus();
     }//GEN-LAST:event_txt_usernameActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
+        LoginNow();
+    }//GEN-LAST:event_btn_loginActionPerformed
+
+    private void btn_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registerActionPerformed
+        new Register().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btn_registerActionPerformed
+
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
+        LoginNow();
+    }//GEN-LAST:event_txt_passwordActionPerformed
+
+    public static void main(String args[]) {
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_login;
+    private javax.swing.JButton btn_register;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField txt_password;
+    private javax.swing.JTextField txt_username;
+    // End of variables declaration//GEN-END:variables
+
+    private void LoginNow() {                                          
     String user = txt_username.getText();
     String pass = new String(txt_password.getPassword());
 
@@ -214,17 +251,17 @@ public class Login extends javax.swing.JFrame {
         ResultSet r = stmt.executeQuery();
         int status = 0;
         int id_user;
-        String nama_user, us, ps, lv = null;
+        String fullname, us, ps, lv = null;
         UserProfile up = new UserProfile();
 
         while (r.next()) {                 
             id_user = r.getInt("id_user");
-            nama_user = r.getString("nama");
+            fullname = r.getString("fullname");
             us = r.getString("username");
             ps = r.getString("password");
-            lv = r.getString("jabatan");
+            lv = r.getString("id_level");
             up.setId(id_user);
-            up.setFullname(nama_user);
+            up.setFullname(fullname);
             up.setUsername(us);
             up.setPassword(ps);
             up.setLevel(lv); 
@@ -269,39 +306,5 @@ public class Login extends javax.swing.JFrame {
     } catch (SQLException e) {
         e.printStackTrace(); // Tambahkan ini agar dapat melihat error
     }
-    }//GEN-LAST:event_btn_loginActionPerformed
-
-    private void btn_registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registerActionPerformed
-        new Register().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btn_registerActionPerformed
-
-    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_passwordActionPerformed
-
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
     }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_login;
-    private javax.swing.JButton btn_register;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField txt_password;
-    private javax.swing.JTextField txt_username;
-    // End of variables declaration//GEN-END:variables
-}
+    } 

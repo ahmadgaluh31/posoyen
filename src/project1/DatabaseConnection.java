@@ -15,7 +15,7 @@ public class DatabaseConnection {
         try {
             MysqlDataSource m = new MysqlDataSource();
             m.setServerName("localhost");
-            m.setDatabaseName("db_kasir");
+            m.setDatabaseName("db_oyen");
             m.setUser("root");
             m.setPassword("");
             m.setPortNumber(3306);

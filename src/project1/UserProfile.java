@@ -6,7 +6,7 @@ package project1;
 
 public class UserProfile {
     private int id;
-    private String nama_user;
+    private String fullname;
     private String username;
     private String password;
     private String level;
@@ -20,11 +20,11 @@ public class UserProfile {
     }
 
     public String getFullname() {
-        return nama_user;
+        return fullname;
     }
 
-    public void setFullname(String nama_user) {
-        this.nama_user = nama_user;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getUsername() {
