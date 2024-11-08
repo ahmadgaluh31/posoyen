@@ -5,8 +5,10 @@
 package project1;
 
 import java.awt.Frame;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +28,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
         labelUser.setText(p.getFullname() + "(" + p.getLevel() + ")");
         
         viewData("");
+        viewDataProduct(""); 
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,6 +47,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
         DataUser = new javax.swing.JPanel();
         jPanel157 = new javax.swing.JPanel();
         jLabel162 = new javax.swing.JLabel();
+        btn_tambah = new javax.swing.JButton();
         btn_edit = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
         btn_refresh = new javax.swing.JButton();
@@ -51,10 +55,21 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         txt_key = new javax.swing.JTextField();
         jLabel163 = new javax.swing.JLabel();
-        btn_tambah = new javax.swing.JButton();
         jScrollPane53 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jPanel158 = new javax.swing.JPanel();
+        jLabel165 = new javax.swing.JLabel();
+        btn_tambah1 = new javax.swing.JButton();
+        btn_edit2 = new javax.swing.JButton();
+        btn_hapus2 = new javax.swing.JButton();
+        btn_refresh2 = new javax.swing.JButton();
+        jPanel85 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        keyProduct = new javax.swing.JTextField();
+        jLabel166 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,7 +84,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe Print", 1, 18)); // NOI18N
         jLabel2.setText("Selamat Datang");
 
-        labelUser.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        labelUser.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
         labelUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelUser.setText("fullname&level");
 
@@ -78,22 +93,21 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(65, 65, 65)
-                .addComponent(labelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(648, 648, 648))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelUser, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelUser)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 18, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(labelUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        Background.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(271, 0, 650, 30));
+        Background.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 517, 1042, -1));
 
         jTabbedPane49.setBackground(new java.awt.Color(0, 153, 153));
         jTabbedPane49.setToolTipText("");
@@ -113,6 +127,15 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jLabel162.setForeground(new java.awt.Color(255, 255, 255));
         jLabel162.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel162.setText("Oyen");
+
+        btn_tambah.setBackground(new java.awt.Color(0, 153, 153));
+        btn_tambah.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_tambah.setText("Tambah");
+        btn_tambah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tambahActionPerformed(evt);
+            }
+        });
 
         btn_edit.setBackground(new java.awt.Color(0, 153, 153));
         btn_edit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -145,7 +168,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jPanel84.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/icons8-search-30.png"))); // NOI18N
-        jPanel84.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 40, 40));
+        jPanel84.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 40, 40));
 
         txt_key.setBackground(new java.awt.Color(204, 204, 204));
         txt_key.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -159,22 +182,13 @@ public class HalamanAdmin extends javax.swing.JFrame {
                 txt_keyKeyReleased(evt);
             }
         });
-        jPanel84.add(txt_key, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 370, 40));
+        jPanel84.add(txt_key, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 370, 40));
 
         jLabel163.setBackground(new java.awt.Color(255, 255, 255));
         jLabel163.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel163.setForeground(new java.awt.Color(0, 204, 204));
         jLabel163.setText("Cari Data");
-        jPanel84.add(jLabel163, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 40));
-
-        btn_tambah.setBackground(new java.awt.Color(0, 153, 153));
-        btn_tambah.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btn_tambah.setText("Tambah");
-        btn_tambah.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_tambahActionPerformed(evt);
-            }
-        });
+        jPanel84.add(jLabel163, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 80, 40));
 
         javax.swing.GroupLayout jPanel157Layout = new javax.swing.GroupLayout(jPanel157);
         jPanel157.setLayout(jPanel157Layout);
@@ -192,8 +206,8 @@ public class HalamanAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_refresh)
                 .addGap(45, 45, 45)
-                .addComponent(jPanel84, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(jPanel84, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel157Layout.setVerticalGroup(
             jPanel157Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,16 +250,132 @@ public class HalamanAdmin extends javax.swing.JFrame {
 
         jTabbedPane49.addTab("Data User", DataUser);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 951, Short.MAX_VALUE)
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "NO", "KODE PRODUK", "NAMA PRODUK", "GAMBAR", "KATEGORI", "SUPPLIER", "HARGA JUAL", "HARGA BELI", "STOK"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable2);
+
+        jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jPanel158.setBackground(new java.awt.Color(0, 102, 102));
+
+        jLabel165.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel165.setFont(new java.awt.Font("Ink Free", 3, 24)); // NOI18N
+        jLabel165.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel165.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel165.setText("Oyen");
+
+        btn_tambah1.setBackground(new java.awt.Color(0, 153, 153));
+        btn_tambah1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_tambah1.setText("Tambah");
+        btn_tambah1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tambah1ActionPerformed(evt);
+            }
+        });
+
+        btn_edit2.setBackground(new java.awt.Color(0, 153, 153));
+        btn_edit2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_edit2.setText("Edit Produk");
+        btn_edit2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_edit2ActionPerformed(evt);
+            }
+        });
+
+        btn_hapus2.setBackground(new java.awt.Color(0, 153, 153));
+        btn_hapus2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_hapus2.setText("Hapus Produk");
+        btn_hapus2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_hapus2btn_hapus51btn_hapus48btn_hapusActionPerformed(evt);
+            }
+        });
+
+        btn_refresh2.setBackground(new java.awt.Color(0, 153, 153));
+        btn_refresh2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_refresh2.setText("Refresh");
+        btn_refresh2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_refresh2btn_hapus51btn_hapus48btn_hapusActionPerformed(evt);
+            }
+        });
+
+        jPanel85.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel85.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Gambar/icons8-search-30.png"))); // NOI18N
+        jPanel85.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 40, 40));
+
+        keyProduct.setBackground(new java.awt.Color(204, 204, 204));
+        keyProduct.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        keyProduct.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                keyProductjTextField52jTextField49jTextField1ActionPerformed(evt);
+            }
+        });
+        keyProduct.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                keyProductKeyReleased(evt);
+            }
+        });
+        jPanel85.add(keyProduct, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 0, 370, 40));
+
+        jLabel166.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel166.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel166.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel166.setText("Cari Produk");
+        jPanel85.add(jLabel166, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 110, 40));
+
+        javax.swing.GroupLayout jPanel158Layout = new javax.swing.GroupLayout(jPanel158);
+        jPanel158.setLayout(jPanel158Layout);
+        jPanel158Layout.setHorizontalGroup(
+            jPanel158Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel158Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel165, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_tambah1)
+                .addGap(7, 7, 7)
+                .addComponent(btn_edit2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_hapus2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_refresh2)
+                .addGap(45, 45, 45)
+                .addComponent(jPanel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 482, Short.MAX_VALUE)
+        jPanel158Layout.setVerticalGroup(
+            jPanel158Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel158Layout.createSequentialGroup()
+                .addGroup(jPanel158Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel158Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel85, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel158Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel158Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_edit2)
+                            .addComponent(btn_hapus2)
+                            .addComponent(jLabel165)
+                            .addComponent(btn_refresh2)
+                            .addComponent(btn_tambah1))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
+
+        jPanel1.add(jPanel158, java.awt.BorderLayout.PAGE_START);
 
         jTabbedPane49.addTab("Data Produk", jPanel1);
 
@@ -253,7 +383,7 @@ public class HalamanAdmin extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 951, Short.MAX_VALUE)
+            .addGap(0, 1042, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,11 +392,20 @@ public class HalamanAdmin extends javax.swing.JFrame {
 
         jTabbedPane49.addTab("Data Transaksi", jPanel2);
 
-        Background.add(jTabbedPane49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 951, -1));
+        Background.add(jTabbedPane49, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1042, -1));
 
-        getContentPane().add(Background, java.awt.BorderLayout.PAGE_START);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, 1042, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(Background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
-        pack();
+        setSize(new java.awt.Dimension(1039, 555));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -345,6 +484,105 @@ public class HalamanAdmin extends javax.swing.JFrame {
         viewData("");
     }//GEN-LAST:event_btn_refreshbtn_hapus51btn_hapus48btn_hapusActionPerformed
 
+    private void btn_tambah1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambah1ActionPerformed
+        TambahProduk T = new TambahProduk(this, true);
+        T.setVisible(true); 
+    }//GEN-LAST:event_btn_tambah1ActionPerformed
+
+    private void btn_edit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_edit2ActionPerformed
+ try {
+        int n = jTable2.getSelectedRow();
+        if (n != -1) {
+            // Ambil nilai id dari kolom pertama yang tersembunyi
+            int id = Integer.parseInt(jTable2.getValueAt(n, 1).toString());
+            String KP = jTable2.getValueAt(n, 2).toString();
+            String NP = jTable2.getValueAt(n, 3).toString();
+            String GP = jTable2.getValueAt(n, 4).toString();
+            String K = jTable2.getValueAt(n, 5).toString();
+            String S = jTable2.getValueAt(n, 6).toString();
+            String HJ = jTable2.getValueAt(n, 7).toString();
+            String HB = jTable2.getValueAt(n, 8).toString();
+            String SP = jTable2.getValueAt(n, 9).toString();
+
+            // Membuka dialog EditProduk dan mengisi nilai
+            EditProduk E = new EditProduk(this, true);
+            E.setId(id);
+            E.setKP(KP);
+            E.setNP(NP);
+            E.setGP(GP);
+            E.setK(K);
+            E.setS(S);
+            E.setHJ(HJ);
+            E.setHB(HB);
+            E.setSP(SP);
+            E.setVisible(true);
+        } else {
+            System.out.println("Tidak ada baris yang dipilih di jTable2.");
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("Terjadi kesalahan: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btn_edit2ActionPerformed
+
+    private void btn_hapus2btn_hapus51btn_hapus48btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_hapus2btn_hapus51btn_hapus48btn_hapusActionPerformed
+        int n = jTable2.getSelectedRow();
+        if (n != -1) {
+            String idStr = jTable2.getValueAt(n, 0).toString();
+
+            if (idStr != null && !idStr.isEmpty()) {
+                try {
+                    int id = Integer.parseInt(idStr);
+                    String productName = jTable2.getValueAt(n, 3).toString();
+
+                    int opsi = JOptionPane.showConfirmDialog(this,
+                            "Apakah Anda yakin ingin menghapus produk " + productName + "?",
+                            "Hapus Produk",
+                            JOptionPane.YES_NO_OPTION);
+                    if (opsi == JOptionPane.YES_OPTION) {
+                        String Q = "DELETE FROM products WHERE id=" + id;
+
+                        try {
+                            Connection K = DatabaseConnection.Go();
+                            Statement S = K.createStatement();
+                            S.executeUpdate(Q);
+                            viewDataProduct("");
+                            JOptionPane.showMessageDialog(this, "Produk " + productName + " telah terhapus");
+                        } catch (SQLException e) {
+                            JOptionPane.showMessageDialog(this, "Gagal menghapus data produk");
+                        }
+                    }
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(this, "ID produk tidak valid.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "ID produk kosong atau tidak valid.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Anda belum memilih produk.");
+        }
+    }//GEN-LAST:event_btn_hapus2btn_hapus51btn_hapus48btn_hapusActionPerformed
+
+    private void btn_refresh2btn_hapus51btn_hapus48btn_hapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_refresh2btn_hapus51btn_hapus48btn_hapusActionPerformed
+        keyProduct.setText("");
+        viewDataProduct("");
+    }//GEN-LAST:event_btn_refresh2btn_hapus51btn_hapus48btn_hapusActionPerformed
+
+    private void keyProductjTextField52jTextField49jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_keyProductjTextField52jTextField49jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_keyProductjTextField52jTextField49jTextField1ActionPerformed
+
+    private void keyProductKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyProductKeyReleased
+        String key = keyProduct.getText();
+        String w = "WHERE "
+                + "product_name LIKE '%"+key+"%' "
+                + "OR product_category LIKE '%"+key+"%' "
+                + "OR product_supplier LIKE '%"+key+"%' "
+                + "OR product_price_s LIKE '%"+key+"%'";
+        
+        viewDataProduct(w); 
+    }//GEN-LAST:event_keyProductKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -388,21 +626,33 @@ public class HalamanAdmin extends javax.swing.JFrame {
     private javax.swing.JPanel Background;
     private javax.swing.JPanel DataUser;
     private javax.swing.JButton btn_edit;
+    private javax.swing.JButton btn_edit2;
     private javax.swing.JButton btn_hapus;
+    private javax.swing.JButton btn_hapus2;
     private javax.swing.JButton btn_refresh;
+    private javax.swing.JButton btn_refresh2;
     private javax.swing.JButton btn_tambah;
+    private javax.swing.JButton btn_tambah1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel162;
     private javax.swing.JLabel jLabel163;
+    private javax.swing.JLabel jLabel165;
+    private javax.swing.JLabel jLabel166;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel157;
+    private javax.swing.JPanel jPanel158;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel84;
+    private javax.swing.JPanel jPanel85;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane53;
     private javax.swing.JTabbedPane jTabbedPane49;
     private static javax.swing.JTable jTable1;
+    private static javax.swing.JTable jTable2;
+    private javax.swing.JTextField keyProduct;
     private javax.swing.JLabel labelUser;
     private javax.swing.JTextField txt_key;
     // End of variables declaration//GEN-END:variables
@@ -434,4 +684,43 @@ public class HalamanAdmin extends javax.swing.JFrame {
             //error handling
         }
     }
+    
+    
+    public static void viewDataProduct(String where) {
+        try {
+            DefaultTableModel m = (DefaultTableModel) jTable2.getModel();
+            m.getDataVector().removeAllElements();
+            Connection K = DatabaseConnection.Go();
+            Statement S = K.createStatement();
+            String Q = "SELECT * FROM products "+where;
+            ResultSet R = S.executeQuery(Q);
+            int n = 1;
+            while (R.next()) {                 
+                int id = R.getInt("id");
+                 	 	 	 	 	 	 	 	
+                String product_code = R.getString("product_code");
+                String product_name = R.getString("product_name");
+                String product_image = R.getString("product_image");                
+                int product_category = R.getInt("product_category");
+                int product_supplier = R.getInt("product_supplier");
+                double product_price_s = R.getDouble("product_price_s");
+                double product_price_b = R.getDouble("product_price_b");
+                int product_stock = R.getInt("product_stock");
+                Object[] data = {id, n,product_code, product_name, product_image,
+                        product_category, product_supplier, product_price_s, product_price_b, product_stock};
+                m.addRow(data); 
+                n++;
+            }
+            
+            jTable2.getColumnModel().getColumn(0).setMinWidth(0);
+            jTable2.getColumnModel().getColumn(0).setMaxWidth(0);
+            jTable2.getColumnModel().getColumn(0).setWidth(0);
+            
+        } catch (Exception e) {
+            //error handling
+        }
+    }
+    // Sembunyikan kolom id (kolom pertama dengan indeks 0) di jTable2
+
+
 }
