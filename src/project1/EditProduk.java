@@ -66,6 +66,11 @@ public class EditProduk extends javax.swing.JDialog {
         txt_namaproduk = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Leelawadee", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -191,17 +196,16 @@ public class EditProduk extends javax.swing.JDialog {
                                         .addGap(8, 8, 8)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txt_namaproduk, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txt_kodeproduk)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(txt_gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
-                                        .addComponent(cmb_kategori, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cmb_supplier, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txt_hargabeli)
-                                        .addComponent(txt_hargajual)
-                                        .addComponent(txt_stok)))
+                                    .addComponent(txt_kodeproduk, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(txt_gambar, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
+                                    .addComponent(cmb_kategori, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cmb_supplier, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txt_hargabeli, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_hargajual, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_stok, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -354,6 +358,22 @@ public class EditProduk extends javax.swing.JDialog {
     private void txt_namaprodukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_namaprodukActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_namaprodukActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+       txt_kodeproduk.setText(getKP());
+        txt_namaproduk.setText(getNP());
+        txt_hargajual.setText(getHJ());
+        txt_hargabeli.setText(getHB());
+        txt_stok.setText(getSP());
+        txt_gambar.setText(getGP());
+
+        // Atur kategori dan supplier dengan format yang sesuai
+        String C = getK().substring(0, 1).toUpperCase() + getK().substring(1).toLowerCase();
+        cmb_kategori.setSelectedItem(C);
+
+        String Sx = getS().substring(0, 1).toUpperCase() + getS().substring(1).toLowerCase();
+        cmb_supplier.setSelectedItem(Sx);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments

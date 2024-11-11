@@ -47,6 +47,11 @@ public class Editdt extends javax.swing.JDialog {
         txt_password = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("EDIT DATA");
@@ -230,6 +235,14 @@ public class Editdt extends javax.swing.JDialog {
     private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_passwordActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txt_nama.setText(getFN()); 
+        txt_username.setText(getUS());
+        txt_password.setText(getPS()); 
+        String LVx = getLV().substring(0, 1).toUpperCase() + getLV().substring(1); 
+        cmbLevel.setSelectedItem(LVx); 
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
